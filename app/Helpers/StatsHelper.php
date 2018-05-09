@@ -48,8 +48,8 @@ class StatsHelper {
         // date => x
         // clicks => y
         $stats = $this->getBaseRows()
-            ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') AS x, count(*) AS y"))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+            ->select(DB::raw("to_char(created_at, '%Y-%m-%d') AS x, count(*) AS y"))
+            ->groupBy(DB::raw("to_char(created_at, '%Y-%m-%d')"))
             ->orderBy('x', 'asc')
             ->get();
 
